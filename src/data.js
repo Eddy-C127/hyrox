@@ -49,14 +49,14 @@ const VOLT_DATA = {
   },
 
   menu: [
-    { id: 'm1', name: 'Shake Post-Entreno Whey', cat: 'SHAKES', price: 8.5, kcal: 220, protein: 32, desc: 'Whey prensado en frío, plátano, leche de avena, canela.', tag: 'TOP VENTA' },
-    { id: 'm2', name: 'Bowl Proteico Keto', cat: 'BOWLS', price: 14.0, kcal: 540, protein: 42, desc: 'Pollo a la plancha, aguacate, huevos, hojas verdes.', tag: 'CHEF' },
-    { id: 'm3', name: 'Espresso Ignición', cat: 'COFFEE', price: 4.5, kcal: 6, protein: 0, desc: 'Doble shot, aceite MCT, cacao oscuro.', tag: 'PRE' },
-    { id: 'm4', name: 'Stack de Carbos Race Day', cat: 'BOWLS', price: 12.0, kcal: 620, protein: 28, desc: 'Camote, arroz jazmín, salmón con miso.', tag: 'NUEVO' },
-    { id: 'm5', name: 'Carga de Electrolitos', cat: 'SHAKES', price: 5.0, kcal: 25, protein: 0, desc: 'Sodio, magnesio, limón, agua de coco.', tag: 'INTRA' },
-    { id: 'm6', name: 'Smoothie de Recuperación', cat: 'SHAKES', price: 9.0, kcal: 310, protein: 28, desc: 'Cereza ácida, caseína, mantequilla de almendra, cacao.', tag: 'POST' },
-    { id: 'm7', name: 'Creatina + Beta-Alanina', cat: 'SUPLEMENTOS', price: 6.0, kcal: 15, protein: 5, desc: 'Dosis estándar 5g + 3.2g, sabor neutro.', tag: 'PRE' },
-    { id: 'm8', name: 'Pack Vitamínico D3 + K2', cat: 'SUPLEMENTOS', price: 4.0, kcal: 0, protein: 0, desc: 'Vitamina D3 2000UI con K2-MK7 para absorción óptima.', tag: 'DIARIO' },
+    { id: 'm1', name: 'Shake Post-Entreno Whey', cat: 'SHAKES', price: 170, kcal: 220, protein: 32, desc: 'Whey prensado en frío, plátano, leche de avena, canela.', tag: 'TOP VENTA' },
+    { id: 'm2', name: 'Bowl Proteico Keto', cat: 'BOWLS', price: 280, kcal: 540, protein: 42, desc: 'Pollo a la plancha, aguacate, huevos, hojas verdes.', tag: 'CHEF' },
+    { id: 'm3', name: 'Espresso Ignición', cat: 'COFFEE', price: 90, kcal: 6, protein: 0, desc: 'Doble shot, aceite MCT, cacao oscuro.', tag: 'PRE' },
+    { id: 'm4', name: 'Stack de Carbos Race Day', cat: 'BOWLS', price: 240, kcal: 620, protein: 28, desc: 'Camote, arroz jazmín, salmón con miso.', tag: 'NUEVO' },
+    { id: 'm5', name: 'Carga de Electrolitos', cat: 'SHAKES', price: 100, kcal: 25, protein: 0, desc: 'Sodio, magnesio, limón, agua de coco.', tag: 'INTRA' },
+    { id: 'm6', name: 'Smoothie de Recuperación', cat: 'SHAKES', price: 180, kcal: 310, protein: 28, desc: 'Cereza ácida, caseína, mantequilla de almendra, cacao.', tag: 'POST' },
+    { id: 'm7', name: 'Creatina + Beta-Alanina', cat: 'SUPLEMENTOS', price: 120, kcal: 15, protein: 5, desc: 'Dosis estándar 5g + 3.2g, sabor neutro.', tag: 'PRE' },
+    { id: 'm8', name: 'Pack Vitamínico D3 + K2', cat: 'SUPLEMENTOS', price: 80, kcal: 0, protein: 0, desc: 'Vitamina D3 2000UI con K2-MK7 para absorción óptima.', tag: 'DIARIO' },
   ],
 
   biometrics: {
@@ -102,7 +102,7 @@ const VOLT_DATA = {
       { id: 'h3', time: '12:00', label: 'PRO MIXTO', spots: 2, total: 24 },
       { id: 'h4', time: '13:30', label: 'DUPLAS', spots: 18, total: 40 },
     ],
-    price: 65,
+    price: 1300,
   },
 
   pastEvents: [

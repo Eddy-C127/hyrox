@@ -70,7 +70,7 @@ export function EventsScreen({ event, pastEvents, showToast }) {
       </div>
 
       <button className="btn btn-volt" onClick={() => setDrawerOpen(true)} style={{ width: '100%', marginBottom: 22 }}>
-        ASEGURA TU HEAT · DESDE €{event.price}
+        ASEGURA TU HEAT · DESDE ${event.price.toLocaleString('es-MX')}
         <Icon.Arrow />
       </button>
 
@@ -181,14 +181,14 @@ function TicketDrawer({ event, heat, selectedHeat, setSelectedHeat, onClose, onS
               <div className="mono" style={{ fontSize: 10, color: 'var(--fg-3)', marginTop: 2 }}>{heat.time} · {event.venue}</div>
             </div>
             <div style={{ textAlign: 'right' }}>
-              <div className="display" style={{ fontSize: 32, color: 'var(--volt)' }}>€{event.price}</div>
+              <div className="display" style={{ fontSize: 32, color: 'var(--volt)' }}>${event.price.toLocaleString('es-MX')}</div>
               <div className="mono" style={{ fontSize: 9, color: 'var(--fg-3)' }}>INCL. CHIP & FOTOS</div>
             </div>
           </div>
         </div>
 
         <button className="btn btn-volt" onClick={onSecure} style={{ width: '100%', marginTop: 14 }}>
-          ASEGURAR TICKET · €{event.price} <Icon.Arrow />
+          ASEGURAR TICKET · ${event.price.toLocaleString('es-MX')} <Icon.Arrow />
         </button>
         <div className="mono" style={{ textAlign: 'center', fontSize: 10, color: 'var(--fg-3)', marginTop: 10 }}>REEMBOLSABLE HASTA 7 DÍAS ANTES</div>
       </div>

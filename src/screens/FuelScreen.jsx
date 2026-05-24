@@ -79,7 +79,7 @@ export function FuelScreen({ menu, cart, setCart, showToast }) {
                     <div className="mono" style={{ fontSize: 9.5, color: 'var(--fg-3)', marginTop: 4 }}>{item.protein}g proteína</div>
                     <div style={{ flex: 1 }} />
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
-                      <div className="display" style={{ fontSize: 18, color: 'var(--fg)' }}>€{item.price.toFixed(2)}</div>
+                      <div className="display" style={{ fontSize: 18, color: 'var(--fg)' }}>${item.price.toLocaleString('es-MX')}</div>
                       <button
                         onClick={() => addToCart(item)}
                         style={{ width: 32, height: 32, borderRadius: 10, background: 'var(--volt)', color: '#000', border: 'none', display: 'grid', placeItems: 'center', cursor: 'pointer' }}
@@ -110,7 +110,7 @@ export function FuelScreen({ menu, cart, setCart, showToast }) {
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div className="display straight" style={{ fontSize: 13, fontWeight: 700, color: 'var(--fg)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.name}</div>
                     <div className="mono" style={{ fontSize: 10, color: 'var(--fg-3)', marginTop: 2 }}>{item.kcal} kcal · {item.protein}g prot.</div>
-                    <div className="display" style={{ fontSize: 14, color: 'var(--volt)', marginTop: 4 }}>€{item.price.toFixed(2)}</div>
+                    <div className="display" style={{ fontSize: 14, color: 'var(--volt)', marginTop: 4 }}>${item.price.toLocaleString('es-MX')}</div>
                   </div>
                   {c ? (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'var(--bg-3)', borderRadius: 12, padding: 4 }}>
@@ -167,7 +167,7 @@ function BagDrawer({ cart, updateQty, total, onClose, onComplete }) {
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div className="display straight" style={{ fontSize: 12, fontWeight: 700, color: 'var(--fg)' }}>{item.name}</div>
-                <div className="mono" style={{ fontSize: 10, color: 'var(--fg-3)' }}>€{item.price.toFixed(2)} · cant. {item.qty}</div>
+                <div className="mono" style={{ fontSize: 10, color: 'var(--fg-3)' }}>${item.price.toLocaleString('es-MX')} · cant. {item.qty}</div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'var(--bg-3)', borderRadius: 10, padding: 3 }}>
                 <button onClick={() => updateQty(item.id, -1)} style={{ width: 24, height: 24, borderRadius: 7, background: 'transparent', border: 'none', color: 'var(--fg)', cursor: 'pointer', display: 'grid', placeItems: 'center' }}><Icon.Minus style={{ width: 12, height: 12 }} /></button>
@@ -183,7 +183,7 @@ function BagDrawer({ cart, updateQty, total, onClose, onComplete }) {
             <div style={{ marginTop: 14, padding: 14, background: 'var(--bg-2)', borderRadius: 16, display: 'flex', flexDirection: 'column', gap: 6 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span className="mono" style={{ fontSize: 11, color: 'var(--fg-3)' }}>SUBTOTAL</span>
-                <span className="mono" style={{ fontSize: 11, color: 'var(--fg-2)' }}>€{total.toFixed(2)}</span>
+                <span className="mono" style={{ fontSize: 11, color: 'var(--fg-2)' }}>${total.toLocaleString('es-MX')}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span className="mono" style={{ fontSize: 11, color: 'var(--fg-3)' }}>DESCUENTO MIEMBRO</span>
@@ -192,7 +192,7 @@ function BagDrawer({ cart, updateQty, total, onClose, onComplete }) {
               <div style={{ height: 1, background: 'var(--line)', margin: '4px 0' }} />
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                 <span className="display" style={{ fontSize: 16, color: 'var(--fg)' }}>TOTAL</span>
-                <span className="display" style={{ fontSize: 26, color: 'var(--volt)' }}>€{(total * 0.9).toFixed(2)}</span>
+                <span className="display" style={{ fontSize: 26, color: 'var(--volt)' }}>${Math.round(total * 0.9).toLocaleString('es-MX')}</span>
               </div>
             </div>
             <button className="btn btn-volt" onClick={onComplete} style={{ width: '100%', marginTop: 14 }}>

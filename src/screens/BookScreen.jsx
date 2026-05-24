@@ -125,7 +125,7 @@ export function BookScreen({ classes, credits, onBook, bookedIds }) {
         </div>
         <div style={{ flex: 1 }}>
           <div className="display straight" style={{ fontSize: 13, fontWeight: 700, color: 'var(--fg)' }}>¿NECESITAS MÁS CRÉDITOS?</div>
-          <div style={{ fontSize: 11, color: 'var(--fg-3)' }}>Pack x10 · €89 · Sin vencimiento</div>
+          <div style={{ fontSize: 11, color: 'var(--fg-3)' }}>Pack x10 · $1,800 MXN · Sin vencimiento</div>
         </div>
         <Icon.Arrow style={{ width: 16, height: 16, color: 'var(--fg-3)' }} />
       </div>
