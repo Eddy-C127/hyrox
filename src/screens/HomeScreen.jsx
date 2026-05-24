@@ -8,14 +8,13 @@ export function LoginScreen({ onEnter }) {
     setTimeout(() => onEnter(), 450)
   }
   return (
-    <div className="device-screen" style={{ opacity: exiting ? 0 : 1, transition: 'opacity 0.4s' }}>
+    <div className="login-screen" style={{ opacity: exiting ? 0 : 1, transition: 'opacity 0.4s' }}>
       <div className="login-bg" />
       <div className="scanline" />
-      <Photo tag="HERO // ATHLETE PORTRAIT" style={{ position: 'absolute', inset: 0, opacity: 0.5 }} />
+      <Photo tag="HÉROE // ATLETA" style={{ position: 'absolute', inset: 0, opacity: 0.5 }} />
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 30%, #000 90%)' }} />
 
       <StatusBar />
-      <div className="island" />
 
       <div style={{ position: 'relative', zIndex: 5, padding: '0 28px', flex: 1, display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12, animation: 'slideDown 0.6s 0.1s both' }}>
@@ -29,11 +28,11 @@ export function LoginScreen({ onEnter }) {
         <div style={{ flex: 1 }} />
 
         <div style={{ animation: 'slideUp 0.7s 0.2s both' }}>
-          <div className="eyebrow" style={{ marginBottom: 14 }}>HIGH-PERFORMANCE · MEMBERS</div>
+          <div className="eyebrow" style={{ marginBottom: 14 }}>ALTO RENDIMIENTO · MIEMBROS</div>
           <h1 className="display" style={{ fontSize: 78, margin: 0, color: 'var(--fg)' }}>
-            BUILT<br />
-            FOR<br />
-            <span style={{ color: 'var(--volt)' }}>WAR.</span>
+            HECHO<br />
+            PARA<br />
+            <span style={{ color: 'var(--volt)' }}>GUERRA.</span>
           </h1>
         </div>
 
@@ -43,13 +42,13 @@ export function LoginScreen({ onEnter }) {
           <div className="marquee-track eyebrow" style={{ color: 'var(--fg-2)' }}>
             {Array(2).fill(0).map((_, i) => (
               <React.Fragment key={i}>
-                <span>HANGAR 04 · BERLIN</span>
+                <span>HANGAR 04 · BERLÍN</span>
                 <span style={{ color: 'var(--volt)' }}>●</span>
-                <span>+1,284 MEMBERS</span>
+                <span>+1,284 MIEMBROS</span>
                 <span style={{ color: 'var(--volt)' }}>●</span>
-                <span>NEXT RACE · 14D</span>
+                <span>PRÓXIMA CARRERA · 14D</span>
                 <span style={{ color: 'var(--volt)' }}>●</span>
-                <span>OPEN 24/7</span>
+                <span>ABIERTO 24/7</span>
                 <span style={{ color: 'var(--volt)' }}>●</span>
               </React.Fragment>
             ))}
@@ -63,12 +62,12 @@ export function LoginScreen({ onEnter }) {
           onClick={handle}
           style={{ width: '100%', height: 64, fontSize: 14, animation: 'slideUp 0.7s 0.35s both, pulseVolt 2.5s 1.5s infinite' }}
         >
-          DEMO ACCESS · ENTER AS USER
+          ACCESO DEMO · ENTRAR COMO USUARIO
           <Icon.Arrow />
         </button>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 14, marginBottom: 18, animation: 'fadeIn 0.6s 0.5s both' }}>
-          <div className="mono" style={{ fontSize: 10, color: 'var(--fg-3)' }}>NO PASSWORD · INSTANT ENTRY</div>
-          <div className="mono" style={{ fontSize: 10, color: 'var(--fg-3)' }}>SECURE ↗</div>
+          <div className="mono" style={{ fontSize: 10, color: 'var(--fg-3)' }}>SIN CONTRASEÑA · ACCESO INMEDIATO</div>
+          <div className="mono" style={{ fontSize: 10, color: 'var(--fg-3)' }}>SEGURO ↗</div>
         </div>
       </div>
     </div>
@@ -82,7 +81,7 @@ export function HomeScreen({ user, onToggleTheme, weeklyVolume }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div className="avatar" />
           <div>
-            <div className="eyebrow" style={{ marginBottom: 3 }}>GOOD MORNING</div>
+            <div className="eyebrow" style={{ marginBottom: 3 }}>BUENOS DÍAS</div>
             <div className="display" style={{ fontSize: 20, color: 'var(--fg)' }}>{user.name.split(' ')[0].toUpperCase()}.</div>
           </div>
         </div>
@@ -91,19 +90,19 @@ export function HomeScreen({ user, onToggleTheme, weeklyVolume }) {
             <Icon.Bell style={{ width: 18, height: 18 }} />
             <span style={{ position: 'absolute', top: 8, right: 8, width: 7, height: 7, borderRadius: '50%', background: 'var(--volt)' }} />
           </button>
-          <div className="theme-switch" onClick={onToggleTheme} role="button" aria-label="toggle theme" />
+          <div className="theme-switch" onClick={onToggleTheme} role="button" aria-label="Cambiar tema" />
         </div>
       </div>
 
       <div style={{ position: 'relative', borderRadius: 28, overflow: 'hidden', marginBottom: 14 }}>
-        <Photo tag="HERO · ATHLETE TRAINING" style={{ position: 'absolute', inset: 0 }} />
+        <Photo tag="HÉROE · ATLETA EN ACCIÓN" style={{ position: 'absolute', inset: 0 }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%)' }} />
         <div style={{ position: 'relative', padding: '20px 20px 22px', color: '#fff' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div className="eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>TODAY · MON 24</div>
+            <div className="eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>HOY · LUN 24</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.18)', padding: '6px 10px', borderRadius: 999, fontSize: 11, fontWeight: 700, letterSpacing: '0.08em' }}>
               <Icon.Flame style={{ width: 12, height: 12, color: 'var(--volt)' }} />
-              {user.streak} DAY STREAK
+              {user.streak} DÍAS RACHA
             </div>
           </div>
           <div style={{ height: 140 }} />
@@ -119,12 +118,12 @@ export function HomeScreen({ user, onToggleTheme, weeklyVolume }) {
       <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 10, marginBottom: 10 }}>
         <div className="card" style={{ padding: 16, position: 'relative', overflow: 'hidden' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div className="eyebrow">CREDITS</div>
+            <div className="eyebrow">CRÉDITOS</div>
             <div className="mono" style={{ fontSize: 10, color: 'var(--fg-3)' }}>{user.credits}/{user.creditsTotal}</div>
           </div>
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 4, marginTop: 6 }}>
             <div className="display" style={{ fontSize: 56, color: 'var(--fg)' }}>{user.credits}</div>
-            <div className="mono" style={{ fontSize: 11, color: 'var(--fg-3)', marginBottom: 8 }}>LEFT</div>
+            <div className="mono" style={{ fontSize: 11, color: 'var(--fg-3)', marginBottom: 8 }}>REST.</div>
           </div>
           <div style={{ marginTop: 4, height: 6, background: 'var(--bg-3)', borderRadius: 4, overflow: 'hidden' }}>
             <div style={{ height: '100%', width: `${(user.credits / user.creditsTotal) * 100}%`, background: 'var(--volt)', boxShadow: '0 0 8px var(--volt-glow)' }} />
@@ -134,9 +133,9 @@ export function HomeScreen({ user, onToggleTheme, weeklyVolume }) {
         <div className="card card-dark" style={{ padding: 16, background: 'var(--volt)', color: '#000', border: 'none' }}>
           <div className="eyebrow" style={{ color: 'rgba(0,0,0,0.5)' }}>PLAN</div>
           <div className="display" style={{ fontSize: 22, marginTop: 6, color: '#000' }}>{user.membership}</div>
-          <div className="mono" style={{ fontSize: 9, marginTop: 8, color: 'rgba(0,0,0,0.65)' }}>EXP {user.expires}</div>
+          <div className="mono" style={{ fontSize: 9, marginTop: 8, color: 'rgba(0,0,0,0.65)' }}>VEN {user.expires}</div>
           <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', gap: 6, fontSize: 10, fontWeight: 700, letterSpacing: '0.08em' }}>
-            ACTIVE <Icon.Dot style={{ width: 8, height: 8, color: '#000' }} />
+            ACTIVO <Icon.Dot style={{ width: 8, height: 8, color: '#000' }} />
           </div>
         </div>
       </div>
@@ -144,8 +143,8 @@ export function HomeScreen({ user, onToggleTheme, weeklyVolume }) {
       <div className="card" style={{ marginBottom: 10 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
           <div>
-            <div className="eyebrow" style={{ marginBottom: 4 }}>WEEKLY VOLUME</div>
-            <div className="display" style={{ fontSize: 22, color: 'var(--fg)' }}>{user.sessionsThisWeek}<span style={{ color: 'var(--fg-3)', fontSize: 16 }}>/{user.weeklyGoal} SESSIONS</span></div>
+            <div className="eyebrow" style={{ marginBottom: 4 }}>VOLUMEN SEMANAL</div>
+            <div className="display" style={{ fontSize: 22, color: 'var(--fg)' }}>{user.sessionsThisWeek}<span style={{ color: 'var(--fg-3)', fontSize: 16 }}>/{user.weeklyGoal} SESIONES</span></div>
           </div>
           <div className="circle-prog" style={{ '--pct': (user.sessionsThisWeek / user.weeklyGoal) * 100, '--size': '46px', '--thick': '5px' }}>
             <span className="mono" style={{ fontSize: 11, fontWeight: 700 }}>{Math.round((user.sessionsThisWeek / user.weeklyGoal) * 100)}%</span>
@@ -153,7 +152,7 @@ export function HomeScreen({ user, onToggleTheme, weeklyVolume }) {
         </div>
         <div className="bar-grid">
           {weeklyVolume.map((d) => (
-            <div key={d.day} className={'bar ' + (d.day === 'THU' ? 'active' : '')} style={{ height: `${Math.max(d.val, 4)}%` }}>
+            <div key={d.day} className={'bar ' + (d.day === 'JUE' ? 'active' : '')} style={{ height: `${Math.max(d.val, 4)}%` }}>
               <div className="bar-label">{d.day}</div>
             </div>
           ))}
@@ -163,12 +162,12 @@ export function HomeScreen({ user, onToggleTheme, weeklyVolume }) {
 
       <div className="card" style={{ marginBottom: 10, display: 'flex', alignItems: 'center', gap: 14 }}>
         <div style={{ width: 56, height: 56, borderRadius: 16, background: 'var(--bg-3)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
-          <div className="display" style={{ fontSize: 11, color: 'var(--volt)' }}>NEXT</div>
+          <div className="display" style={{ fontSize: 11, color: 'var(--volt)' }}>PROX.</div>
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="eyebrow" style={{ marginBottom: 4 }}>UPCOMING · TUE 17:30</div>
-          <div className="display straight" style={{ fontSize: 16, fontWeight: 700, color: 'var(--fg)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>HYBRID RACE SIM</div>
-          <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>1 spot left · Coach Alex</div>
+          <div className="eyebrow" style={{ marginBottom: 4 }}>PRÓXIMA · MAR 17:30</div>
+          <div className="display straight" style={{ fontSize: 16, fontWeight: 700, color: 'var(--fg)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>SIM. CARRERA HÍBRIDA</div>
+          <div style={{ fontSize: 11, color: 'var(--fg-3)', marginTop: 2 }}>1 lugar disponible · Coach Alex</div>
         </div>
         <Icon.Arrow style={{ width: 18, height: 18, color: 'var(--fg-3)' }} />
       </div>
@@ -177,18 +176,18 @@ export function HomeScreen({ user, onToggleTheme, weeklyVolume }) {
         <div className="card" style={{ padding: 16 }}>
           <Icon.Heart style={{ width: 18, height: 18, color: 'var(--volt)' }} />
           <div className="display" style={{ fontSize: 28, marginTop: 8, color: 'var(--fg)' }}>58<span style={{ fontSize: 12, color: 'var(--fg-3)', marginLeft: 4 }}>BPM</span></div>
-          <div className="eyebrow" style={{ marginTop: 4 }}>RESTING HR</div>
+          <div className="eyebrow" style={{ marginTop: 4 }}>FC EN REPOSO</div>
         </div>
         <div className="card" style={{ padding: 16 }}>
           <Icon.ArrowDown style={{ width: 18, height: 18, color: 'var(--volt)' }} />
           <div className="display" style={{ fontSize: 28, marginTop: 8, color: 'var(--fg)' }}>14<span style={{ fontSize: 12, color: 'var(--fg-3)', marginLeft: 4 }}>% BF</span></div>
-          <div className="eyebrow" style={{ marginTop: 4 }}>-4 PTS / 7W</div>
+          <div className="eyebrow" style={{ marginTop: 4 }}>-4 PTS / 7 SEM.</div>
         </div>
       </div>
 
       <div style={{ height: 20 }} />
       <div className="mono" style={{ fontSize: 10, color: 'var(--fg-4)', textAlign: 'center', letterSpacing: '0.12em' }}>
-        MEMBER · {user.memberSince} — VOLT//HPX
+        MIEMBRO · {user.memberSince} — VOLT//HPX
       </div>
     </div>
   )
@@ -208,7 +207,7 @@ export function AccessFAB({ onClick }) {
         boxShadow: '0 12px 30px -8px var(--volt-glow), 0 0 0 4px rgba(204,255,0,0.12)',
         zIndex: 25,
       }}
-      aria-label="Open access pass"
+      aria-label="Abrir pase de acceso"
     >
       <Icon.QR style={{ width: 24, height: 24 }} />
     </button>
@@ -222,8 +221,8 @@ export function QROverlay({ user, onClose }) {
         <div className="drawer-grip" />
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
           <div>
-            <div className="eyebrow">ACCESS PASS</div>
-            <div className="display" style={{ fontSize: 28, marginTop: 4, color: 'var(--fg)' }}>SCAN TO ENTER</div>
+            <div className="eyebrow">PASE DE ACCESO</div>
+            <div className="display" style={{ fontSize: 28, marginTop: 4, color: 'var(--fg)' }}>ESCANEA PARA ENTRAR</div>
           </div>
           <button onClick={onClose} className="btn-ghost" style={{ width: 40, height: 40, padding: 0, borderRadius: 12 }}>
             <Icon.X style={{ width: 16, height: 16 }} />
@@ -248,12 +247,12 @@ export function QROverlay({ user, onClose }) {
           <div className="card" style={{ padding: 14, textAlign: 'center' }}>
             <Icon.Flame style={{ width: 18, height: 18, color: 'var(--volt)' }} />
             <div className="display" style={{ fontSize: 22, marginTop: 6, color: 'var(--fg)' }}>{user.streak}</div>
-            <div className="eyebrow" style={{ marginTop: 2 }}>STREAK</div>
+            <div className="eyebrow" style={{ marginTop: 2 }}>RACHA</div>
           </div>
           <div className="card" style={{ padding: 14, textAlign: 'center' }}>
             <Icon.Check style={{ width: 18, height: 18, color: 'var(--volt)' }} />
             <div className="display" style={{ fontSize: 22, marginTop: 6, color: 'var(--fg)' }}>{user.credits}</div>
-            <div className="eyebrow" style={{ marginTop: 2 }}>CREDITS</div>
+            <div className="eyebrow" style={{ marginTop: 2 }}>CRÉDITOS</div>
           </div>
           <div className="card" style={{ padding: 14, textAlign: 'center' }}>
             <Icon.Coach style={{ width: 18, height: 18, color: 'var(--volt)' }} />

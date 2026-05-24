@@ -31,92 +31,86 @@ export default function App() {
   const handleBook = (id) => {
     setBooked(prev => new Set([...prev, id]))
     setUser(u => ({ ...u, credits: Math.max(0, u.credits - 1), sessionsThisWeek: u.sessionsThisWeek + 1 }))
-    showToast('CLASS BOOKED · 1 CREDIT USED')
+    showToast('CLASE RESERVADA · 1 CRÉDITO USADO')
   }
 
   const tabs = [
-    { id: 'home', label: 'HOME', icon: Icon.Home },
-    { id: 'book', label: 'CLASSES', icon: Icon.Schedule },
+    { id: 'home', label: 'INICIO', icon: Icon.Home },
+    { id: 'book', label: 'CLASES', icon: Icon.Schedule },
     { id: 'fuel', label: 'FUEL', icon: Icon.Fuel },
-    { id: 'health', label: 'HEALTH', icon: Icon.Health },
-    { id: 'events', label: 'EVENTS', icon: Icon.Events },
+    { id: 'health', label: 'SALUD', icon: Icon.Health },
+    { id: 'events', label: 'EVENTOS', icon: Icon.Events },
   ]
 
   return (
-    <div className="device-wrap">
-      <div className="device">
-        <div className="device-label">VOLT // HPX — DEMO BUILD 2.4</div>
-        <div className="device-screen">
-          {!entered ? (
-            <LoginScreen onEnter={() => setEntered(true)} />
-          ) : (
-            <>
-              <StatusBar />
-              <div className="island" />
-              <div key={tab} style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                {tab === 'home' && (
-                  <HomeScreen
-                    user={user}
-                    theme={theme}
-                    onToggleTheme={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
-                    onShowQR={() => setQrOpen(true)}
-                    weeklyVolume={D.weeklyVolume}
-                  />
-                )}
-                {tab === 'book' && (
-                  <BookScreen
-                    classes={D.classes}
-                    credits={user.credits}
-                    bookedIds={booked}
-                    onBook={handleBook}
-                  />
-                )}
-                {tab === 'fuel' && (
-                  <FuelScreen menu={D.menu} cart={cart} setCart={setCart} showToast={showToast} />
-                )}
-                {tab === 'health' && (
-                  <HealthScreen
-                    biometrics={D.biometrics}
-                    prescription={D.prescription}
-                    consultants={D.consultants}
-                  />
-                )}
-                {tab === 'events' && (
-                  <EventsScreen event={D.event} pastEvents={D.pastEvents} showToast={showToast} />
-                )}
-              </div>
+    <div className="app-shell">
+      {!entered ? (
+        <LoginScreen onEnter={() => setEntered(true)} />
+      ) : (
+        <>
+          <StatusBar />
+          <div key={tab} style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+            {tab === 'home' && (
+              <HomeScreen
+                user={user}
+                theme={theme}
+                onToggleTheme={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
+                onShowQR={() => setQrOpen(true)}
+                weeklyVolume={D.weeklyVolume}
+              />
+            )}
+            {tab === 'book' && (
+              <BookScreen
+                classes={D.classes}
+                credits={user.credits}
+                bookedIds={booked}
+                onBook={handleBook}
+              />
+            )}
+            {tab === 'fuel' && (
+              <FuelScreen menu={D.menu} cart={cart} setCart={setCart} showToast={showToast} />
+            )}
+            {tab === 'health' && (
+              <HealthScreen
+                biometrics={D.biometrics}
+                prescription={D.prescription}
+                consultants={D.consultants}
+              />
+            )}
+            {tab === 'events' && (
+              <EventsScreen event={D.event} pastEvents={D.pastEvents} showToast={showToast} />
+            )}
+          </div>
 
-              {tab === 'home' && <AccessFAB onClick={() => setQrOpen(true)} />}
+          {tab === 'home' && <AccessFAB onClick={() => setQrOpen(true)} />}
 
-              <nav className="bottom-nav">
-                {tabs.map(t => {
-                  const I = t.icon
-                  return (
-                    <button
-                      key={t.id}
-                      className={'nav-tab ' + (tab === t.id ? 'active' : '')}
-                      onClick={() => setTab(t.id)}
-                      aria-label={t.label}
-                    >
-                      <I />
-                      <span>{t.label}</span>
-                    </button>
-                  )
-                })}
-              </nav>
+          <nav className="bottom-nav">
+            {tabs.map(t => {
+              const I = t.icon
+              return (
+                <button
+                  key={t.id}
+                  className={'nav-tab ' + (tab === t.id ? 'active' : '')}
+                  onClick={() => setTab(t.id)}
+                  aria-label={t.label}
+                >
+                  <I />
+                  <span>{t.label}</span>
+                </button>
+              )
+            })}
+          </nav>
 
-              {qrOpen && <QROverlay user={user} onClose={() => setQrOpen(false)} />}
+          {qrOpen && <QROverlay user={user} onClose={() => setQrOpen(false)} />}
 
-              {toast && (
-                <div className="toast">
-                  <Icon.Check style={{ width: 16, height: 16 }} />
-                  {toast}
-                </div>
-              )}
-            </>
+          {toast && (
+            <div className="toast">
+              <Icon.Check style={{ width: 16, height: 16 }} />
+              {toast}
+            </div>
           )}
-        </div>
-      </div>
+        </>
+      )}
     </div>
   )
 }

@@ -3,21 +3,23 @@ import { Icon } from '../primitives'
 
 export function BookScreen({ classes, credits, onBook, bookedIds }) {
   const [day, setDay] = React.useState(0)
-  const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+  const days = ['LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB', 'DOM']
   const dates = [24, 25, 26, 27, 28, 29, 30]
   const list = classes[day] || []
+
+  const intensityColor = (i) => i === 'PICO' ? 'var(--volt)' : i === 'ALTO' ? '#FF7A3D' : i === 'MED' ? '#5BC0FF' : '#9CA3AF'
 
   return (
     <div className="scroll page-enter">
       <div style={{ paddingTop: 8, marginBottom: 18 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <div>
-            <div className="eyebrow">SCHEDULE</div>
-            <div className="display" style={{ fontSize: 44, color: 'var(--fg)', marginTop: 6 }}>BOOK<span style={{ color: 'var(--volt)' }}>.</span></div>
+            <div className="eyebrow">HORARIO</div>
+            <div className="display" style={{ fontSize: 44, color: 'var(--fg)', marginTop: 6 }}>RESERVAR<span style={{ color: 'var(--volt)' }}>.</span></div>
           </div>
           <div style={{ textAlign: 'right' }}>
             <div className="display" style={{ fontSize: 28, color: 'var(--volt)' }}>{credits}</div>
-            <div className="eyebrow">CREDITS</div>
+            <div className="eyebrow">CRÉDITOS</div>
           </div>
         </div>
       </div>
@@ -40,6 +42,7 @@ export function BookScreen({ classes, credits, onBook, bookedIds }) {
                 cursor: 'pointer',
                 borderRadius: 18,
                 gap: 4,
+                fontFamily: 'inherit',
               }}
             >
               <div className="eyebrow" style={{ color: active ? 'rgba(0,0,0,0.6)' : 'var(--fg-3)' }}>{d}</div>
@@ -55,21 +58,21 @@ export function BookScreen({ classes, credits, onBook, bookedIds }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {list.length === 0 ? (
           <div className="card" style={{ textAlign: 'center', padding: 32 }}>
-            <div className="display" style={{ fontSize: 22, color: 'var(--fg-3)' }}>REST DAY<span style={{ color: 'var(--volt)' }}>.</span></div>
-            <div className="mono" style={{ fontSize: 11, color: 'var(--fg-4)', marginTop: 8 }}>NO CLASSES SCHEDULED</div>
+            <div className="display" style={{ fontSize: 22, color: 'var(--fg-3)' }}>DÍA DE DESCANSO<span style={{ color: 'var(--volt)' }}>.</span></div>
+            <div className="mono" style={{ fontSize: 11, color: 'var(--fg-4)', marginTop: 8 }}>SIN CLASES PROGRAMADAS</div>
           </div>
         ) : list.map((c) => {
           const booked = bookedIds.has(c.id)
           const full = c.spots === 0
-          const intensityColor = c.intensity === 'PEAK' ? 'var(--volt)' : c.intensity === 'HIGH' ? '#FF7A3D' : c.intensity === 'MED' ? '#5BC0FF' : '#9CA3AF'
+          const iColor = intensityColor(c.intensity)
           return (
             <div key={c.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
               <div style={{ display: 'flex', alignItems: 'stretch' }}>
                 <div style={{ width: 78, padding: '18px 0 18px 18px', borderRight: '1px solid var(--line)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                   <div className="display" style={{ fontSize: 24, color: 'var(--fg)' }}>{c.time}</div>
                   <div className="mono" style={{ fontSize: 10, color: 'var(--fg-3)', marginTop: 2 }}>{c.dur} MIN</div>
-                  <div style={{ marginTop: 8, width: 24, height: 3, background: intensityColor, borderRadius: 2 }} />
-                  <div className="eyebrow" style={{ fontSize: 9, marginTop: 4, color: intensityColor }}>{c.intensity}</div>
+                  <div style={{ marginTop: 8, width: 24, height: 3, background: iColor, borderRadius: 2 }} />
+                  <div className="eyebrow" style={{ fontSize: 9, marginTop: 4, color: iColor }}>{c.intensity}</div>
                 </div>
                 <div style={{ flex: 1, padding: '16px 16px 16px 14px' }}>
                   <div className="display straight" style={{ fontSize: 16, fontWeight: 700, color: 'var(--fg)', lineHeight: 1.1 }}>{c.type}</div>
@@ -83,7 +86,7 @@ export function BookScreen({ classes, credits, onBook, bookedIds }) {
                   <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
                     <div style={{ flex: 1 }}>
                       <div className="mono" style={{ fontSize: 10, color: full ? '#FF5757' : 'var(--fg-3)' }}>
-                        {full ? 'FULL' : `${c.spots} / ${c.total} SPOTS`}
+                        {full ? 'LLENO' : `${c.spots} / ${c.total} LUGARES`}
                       </div>
                       <div style={{ marginTop: 4, height: 3, background: 'var(--bg-3)', borderRadius: 2, overflow: 'hidden' }}>
                         <div style={{ height: '100%', width: `${(1 - c.spots / c.total) * 100}%`, background: full ? '#FF5757' : c.spots <= 3 ? '#FF7A3D' : 'var(--volt)' }} />
@@ -105,7 +108,7 @@ export function BookScreen({ classes, credits, onBook, bookedIds }) {
                         opacity: full ? 0.5 : 1,
                       }}
                     >
-                      {booked ? <><Icon.Check style={{ width: 14, height: 14 }} /> BOOKED</> : full ? 'FULL' : '+ BOOK · 1 CR'}
+                      {booked ? <><Icon.Check style={{ width: 14, height: 14 }} /> RESERVADO</> : full ? 'LLENO' : '+ RESERVAR · 1 CR'}
                     </button>
                   </div>
                 </div>
@@ -121,8 +124,8 @@ export function BookScreen({ classes, credits, onBook, bookedIds }) {
           <Icon.Plus style={{ width: 18, height: 18, color: 'var(--volt)' }} />
         </div>
         <div style={{ flex: 1 }}>
-          <div className="display straight" style={{ fontSize: 13, fontWeight: 700, color: 'var(--fg)' }}>NEED MORE CREDITS?</div>
-          <div style={{ fontSize: 11, color: 'var(--fg-3)' }}>10-pack · €89 · No expiry</div>
+          <div className="display straight" style={{ fontSize: 13, fontWeight: 700, color: 'var(--fg)' }}>¿NECESITAS MÁS CRÉDITOS?</div>
+          <div style={{ fontSize: 11, color: 'var(--fg-3)' }}>Pack x10 · €89 · Sin vencimiento</div>
         </div>
         <Icon.Arrow style={{ width: 16, height: 16, color: 'var(--fg-3)' }} />
       </div>
