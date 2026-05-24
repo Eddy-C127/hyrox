@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, QRPattern, Photo, StatusBar } from '../primitives'
+import { Icon, QRPattern, Photo } from '../primitives'
 
 export function LoginScreen({ onEnter }) {
   const [exiting, setExiting] = React.useState(false)
@@ -13,8 +13,6 @@ export function LoginScreen({ onEnter }) {
       <div className="scanline" />
       <Photo tag="HÉROE // ATLETA" style={{ position: 'absolute', inset: 0, opacity: 0.5 }} />
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 30%, #000 90%)' }} />
-
-      <StatusBar />
 
       <div style={{ position: 'relative', zIndex: 5, padding: '0 28px', flex: 1, display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12, animation: 'slideDown 0.6s 0.1s both' }}>

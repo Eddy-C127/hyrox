@@ -117,21 +117,10 @@ html, body {
   overflow: hidden;
 }
 
-/* Status bar */
-.statusbar {
-  height: 54px;
-  padding: 18px 28px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--fg);
-  flex-shrink: 0;
-  position: relative;
-  z-index: 10;
+/* Safe area padding for real device notch */
+.app-shell {
+  padding-top: env(safe-area-inset-top, 0px);
 }
-.statusbar .icons { display: flex; gap: 6px; align-items: center; }
 
 /* ============================================
    TYPOGRAPHY

@@ -1,6 +1,6 @@
 import React from 'react'
 import VOLT_DATA from './data'
-import { Icon, StatusBar } from './primitives'
+import { Icon } from './primitives'
 import { LoginScreen, HomeScreen, AccessFAB, QROverlay } from './screens/HomeScreen'
 import { BookScreen } from './screens/BookScreen'
 import { FuelScreen } from './screens/FuelScreen'
@@ -53,7 +53,6 @@ export default function App() {
         <LoginScreen onEnter={() => setEntered(true)} />
       ) : (
         <>
-          <StatusBar />
           <div key={tab} style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
             {tab === 'home' && (
               <HomeScreen
