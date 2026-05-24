@@ -74,12 +74,13 @@ export function LoginScreen({ onEnter }) {
   )
 }
 
-export function HomeScreen({ user, onToggleTheme, weeklyVolume }) {
+export function HomeScreen({ user, onToggleTheme, weeklyVolume, onBuyCredits }) {
+  const [creditsOpen, setCreditsOpen] = React.useState(false)
   return (
     <div className="scroll page-enter">
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 8, marginBottom: 22 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div className="avatar" />
+          <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'radial-gradient(circle at 30% 30%, #333, #0a0a0a)', border: '2px solid var(--volt)', display: 'grid', placeItems: 'center', flexShrink: 0, fontFamily: 'Anton, sans-serif', fontStyle: 'italic', fontSize: 14, color: 'var(--fg)' }}>{user.initials}</div>
           <div>
             <div className="eyebrow" style={{ marginBottom: 3 }}>BUENOS DÍAS</div>
             <div className="display" style={{ fontSize: 20, color: 'var(--fg)' }}>{user.name.split(' ')[0].toUpperCase()}.</div>
@@ -126,8 +127,14 @@ export function HomeScreen({ user, onToggleTheme, weeklyVolume }) {
             <div className="mono" style={{ fontSize: 11, color: 'var(--fg-3)', marginBottom: 8 }}>REST.</div>
           </div>
           <div style={{ marginTop: 4, height: 6, background: 'var(--bg-3)', borderRadius: 4, overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: `${(user.credits / user.creditsTotal) * 100}%`, background: 'var(--volt)', boxShadow: '0 0 8px var(--volt-glow)' }} />
+            <div style={{ height: '100%', width: `${Math.min((user.credits / user.creditsTotal) * 100, 100)}%`, background: 'var(--volt)', boxShadow: '0 0 8px var(--volt-glow)' }} />
           </div>
+          <button
+            onClick={() => setCreditsOpen(true)}
+            style={{ marginTop: 12, width: '100%', height: 32, borderRadius: 10, background: 'var(--volt-soft)', border: '1px solid var(--volt)', color: 'var(--volt)', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}
+          >
+            <Icon.Plus style={{ width: 12, height: 12 }} /> COMPRAR
+          </button>
         </div>
 
         <div className="card card-dark" style={{ padding: 16, background: 'var(--volt)', color: '#000', border: 'none' }}>
@@ -189,6 +196,136 @@ export function HomeScreen({ user, onToggleTheme, weeklyVolume }) {
       <div className="mono" style={{ fontSize: 10, color: 'var(--fg-4)', textAlign: 'center', letterSpacing: '0.12em' }}>
         MIEMBRO · {user.memberSince} — VOLT//HPX
       </div>
+
+      {creditsOpen && (
+        <CreditsModal
+          onClose={() => setCreditsOpen(false)}
+          onBuy={(amount, label) => { setCreditsOpen(false); onBuyCredits(amount, label) }}
+        />
+      )}
+    </div>
+  )
+}
+
+const PACKAGES = [
+  {
+    id: 'day',
+    label: 'DAY PASS',
+    credits: 1,
+    price: 350,
+    desc: 'Acceso por un día completo',
+    tag: 'FLEX',
+    highlight: false,
+  },
+  {
+    id: 'four',
+    label: '4 CLASES',
+    credits: 4,
+    price: 1200,
+    desc: 'Ideal para empezar fuerte',
+    tag: 'POPULAR',
+    highlight: true,
+  },
+  {
+    id: 'twenty',
+    label: '20 CLASES',
+    credits: 20,
+    price: 4500,
+    desc: 'El mejor precio por clase',
+    tag: 'PRO',
+    highlight: false,
+  },
+]
+
+function CreditsModal({ onClose, onBuy }) {
+  const [selected, setSelected] = React.useState('four')
+  const [paying, setPaying] = React.useState(false)
+  const pkg = PACKAGES.find(p => p.id === selected)
+
+  const handlePay = () => {
+    setPaying(true)
+    setTimeout(() => { onBuy(pkg.credits, pkg.label) }, 900)
+  }
+
+  return (
+    <div className="drawer-backdrop" onClick={onClose}>
+      <div className="drawer" onClick={e => e.stopPropagation()}>
+        <div className="drawer-grip" />
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+          <div>
+            <div className="eyebrow">RECARGA</div>
+            <div className="display" style={{ fontSize: 28, marginTop: 4, color: 'var(--fg)' }}>PAQUETES<span style={{ color: 'var(--volt)' }}>.</span></div>
+          </div>
+          <button onClick={onClose} className="btn-ghost" style={{ width: 40, height: 40, padding: 0, borderRadius: 12 }}>
+            <Icon.X style={{ width: 16, height: 16 }} />
+          </button>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+          {PACKAGES.map(p => {
+            const sel = selected === p.id
+            const dark = sel && p.highlight
+            return (
+              <button
+                key={p.id}
+                onClick={() => setSelected(p.id)}
+                style={{
+                  background: dark ? 'var(--volt)' : sel ? 'var(--bg-3)' : 'var(--bg-2)',
+                  border: sel ? `2px solid ${p.highlight ? 'var(--volt)' : 'var(--fg-2)'}` : '1px solid var(--line)',
+                  borderRadius: 20, padding: '16px 18px',
+                  display: 'flex', alignItems: 'center', gap: 14,
+                  cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit',
+                  transition: 'all 0.2s', position: 'relative', overflow: 'hidden',
+                }}
+              >
+                {dark && <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%)', pointerEvents: 'none' }} />}
+
+                <div style={{ width: 48, height: 48, borderRadius: 14, flexShrink: 0, background: dark ? 'rgba(0,0,0,0.15)' : sel ? 'var(--volt-soft)' : 'var(--bg-3)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                  <div className="display" style={{ fontSize: 20, color: dark ? '#000' : 'var(--volt)', lineHeight: 1 }}>{p.credits}</div>
+                  <div className="mono" style={{ fontSize: 7, color: dark ? 'rgba(0,0,0,0.6)' : 'var(--fg-3)', letterSpacing: '0.08em', marginTop: 1 }}>CR.</div>
+                </div>
+
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
+                    <div className="display straight" style={{ fontSize: 15, fontWeight: 700, color: dark ? '#000' : 'var(--fg)' }}>{p.label}</div>
+                    <div style={{ padding: '2px 7px', borderRadius: 6, background: dark ? 'rgba(0,0,0,0.15)' : 'var(--volt-soft)', fontSize: 8, fontWeight: 700, letterSpacing: '0.1em', color: dark ? '#000' : 'var(--volt)' }}>{p.tag}</div>
+                  </div>
+                  <div className="mono" style={{ fontSize: 10, color: dark ? 'rgba(0,0,0,0.65)' : 'var(--fg-3)' }}>{p.desc}</div>
+                </div>
+
+                <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                  <div className="display" style={{ fontSize: 22, color: dark ? '#000' : 'var(--volt)' }}>${p.price.toLocaleString('es-MX')}</div>
+                  <div className="mono" style={{ fontSize: 9, color: dark ? 'rgba(0,0,0,0.55)' : 'var(--fg-4)', marginTop: 1 }}>MXN</div>
+                </div>
+
+                <div style={{ width: 22, height: 22, borderRadius: '50%', flexShrink: 0, border: sel ? 'none' : '1.5px solid var(--fg-3)', background: sel ? (p.highlight ? '#000' : 'var(--volt)') : 'transparent', display: 'grid', placeItems: 'center' }}>
+                  {sel && <Icon.Check style={{ width: 11, height: 11, color: p.highlight ? 'var(--volt)' : '#000' }} />}
+                </div>
+              </button>
+            )
+          })}
+        </div>
+
+        <div style={{ padding: '14px 16px', background: 'var(--bg-2)', borderRadius: 16, border: '1px dashed var(--line-strong)', marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <div className="eyebrow" style={{ marginBottom: 4 }}>RESUMEN</div>
+            <div className="display straight" style={{ fontSize: 14, fontWeight: 700, color: 'var(--fg)' }}>{pkg.label} · {pkg.credits} crédito{pkg.credits > 1 ? 's' : ''}</div>
+            <div className="mono" style={{ fontSize: 10, color: 'var(--fg-3)', marginTop: 2 }}>Sin fecha de vencimiento</div>
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <div className="display" style={{ fontSize: 30, color: 'var(--volt)' }}>${pkg.price.toLocaleString('es-MX')}</div>
+            <div className="mono" style={{ fontSize: 9, color: 'var(--fg-4)' }}>MXN</div>
+          </div>
+        </div>
+
+        <button className="btn btn-volt" onClick={handlePay} disabled={paying} style={{ width: '100%', opacity: paying ? 0.7 : 1, transition: 'opacity 0.2s' }}>
+          {paying ? 'PROCESANDO...' : <>PAGAR ${pkg.price.toLocaleString('es-MX')} MXN <Icon.Arrow /></>}
+        </button>
+        <div className="mono" style={{ textAlign: 'center', fontSize: 10, color: 'var(--fg-3)', marginTop: 10 }}>
+          SOLO DEMO · SIN COBRO REAL
+        </div>
+      </div>
     </div>
   )
 }
@@ -240,7 +377,7 @@ export function QROverlay({ user, onClose }) {
         </div>
 
         <div className="mono" style={{ textAlign: 'center', fontSize: 11, color: 'var(--fg-3)', letterSpacing: '0.14em' }}>
-          ID · VLT-AM-2024-{user.streak.toString().padStart(4, '0')}
+          ID · VLT-{user.initials}-2024-{user.streak.toString().padStart(4, '0')}
         </div>
 
         <div style={{ marginTop: 22, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>

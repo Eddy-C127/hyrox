@@ -1,8 +1,8 @@
 const VOLT_DATA = {
   user: {
-    name: 'Alex Mendez',
-    initials: 'AM',
-    handle: '@alex.mendez',
+    name: 'Jaime Mendez',
+    initials: 'JM',
+    handle: '@jaime.mendez',
     streak: 5,
     credits: 12,
     membership: 'PERFORMANCE',

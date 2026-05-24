@@ -34,6 +34,11 @@ export default function App() {
     showToast('CLASE RESERVADA · 1 CRÉDITO USADO')
   }
 
+  const handleBuyCredits = (amount, label) => {
+    setUser(u => ({ ...u, credits: u.credits + amount, creditsTotal: u.creditsTotal + amount }))
+    showToast(`+${amount} CRÉDITO${amount > 1 ? 'S' : ''} · ${label}`)
+  }
+
   const tabs = [
     { id: 'home', label: 'INICIO', icon: Icon.Home },
     { id: 'book', label: 'CLASES', icon: Icon.Schedule },
@@ -57,6 +62,7 @@ export default function App() {
                 onToggleTheme={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
                 onShowQR={() => setQrOpen(true)}
                 weeklyVolume={D.weeklyVolume}
+                onBuyCredits={handleBuyCredits}
               />
             )}
             {tab === 'book' && (
